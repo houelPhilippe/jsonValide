@@ -21,8 +21,17 @@ def validate_xml(xml_path: str, xsd_path: str) -> bool:
 
     valid = schema.validate(xml_doc)
     if not valid:
+        lines: list[str]
+        with open(xml_path, 'r', encoding="utf-8", errors="ignore") as f:
+            lines = f.readlines()
+
         for error in schema.error_log:
             print(f"Line {error.line}, column {error.column}: {error.message}")
+            if 0 < error.line <= len(lines):
+                problem_line = lines[error.line - 1].rstrip("\n")
+                pointer = " " * (max(error.column - 1, 0)) + "^"
+                print(problem_line)
+                print(pointer)
     return valid
 
 

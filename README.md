@@ -7,6 +7,6 @@ Validation d'un fichier XML avec son schéma XSD
 python xml_validate.py mon_fichier.xml mon_schema.xsd
 ```
 
-En cas d'erreur de validation, les messages affichent la ligne et la colonne
-où le problème est survenu.
+En cas d'erreur de validation, chaque message indique la ligne et la colonne
+du problème, suivies du contenu de la ligne pour faciliter le diagnostic.
 
